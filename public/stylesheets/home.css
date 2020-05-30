@@ -1,0 +1,20 @@
+#coustom {
+	padding-top: 20%;
+	text-align: center;
+}
+body {
+	background: url("https://images.unsplash.com/photo-1571687949921-1306bfb24b72?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+	background-size: cover;
+	background-position: center;
+	height: 100vh
+	color: blue;
+}
+#name{
+	color: white;
+}
+hr {
+	width: 300px;
+}
+h1 {
+	font-size: 5em;
+}
