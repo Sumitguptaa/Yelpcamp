@@ -17,9 +17,9 @@ const campgroundRoutes = require("./routes/campgrounds"),
 const port = process.env.PORT || 3000;
 const database = process.env.DATABASEURL || "mongodb://localhost:27017/Yelpcamp";
 
-mongoose.connect(database,{useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(database, {useNewUrlParser: true, useUnifiedTopology: true});
 app.set("view engine","ejs");
-mongoose.set("useFindAndModify", false);
+// mongoose.set("useFindAndModify", false);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname+ "/public"));
 app.use(methodOverride("_method"));
@@ -89,7 +89,6 @@ app.post("/login",passport.authenticate("local", {
 		successRedirect: "/campgrounds",
 		faliureRedirect: "/login"
 	}), function(req, res){	
-	req.flash("success","You have looged in");
 });
 
 // logout route

@@ -1,7 +1,9 @@
 const express = require("express");
 const router  = express.Router();
+const  methodOverride = require("method-override");
 const Campground = require("../models/campground");
 
+router.use(methodOverride("_method"));
 
 // INDEX PAGE
 router.get("/campgrounds",function(req, res){
@@ -59,7 +61,7 @@ router.get("/campgrounds/:id",function(req, res){
 // EDIT - campground route
 router.get("/campgrounds/:id/edit", checkcampgroundOwnership, function(req, res){
 	Campground.findById(req.params.id, function(err, foundcampground){
-				res.render("campgrounds/edit",{campground: foundcampground});
+		res.render("campgrounds/edit",{campground: foundcampground});
 	});
 });
 
@@ -80,13 +82,15 @@ router.put("/campgrounds/:id", checkcampgroundOwnership, function(req, res){
 router.delete("/campgrounds/:id", checkcampgroundOwnership, function(req, res){
 	Campground.findByIdAndRemove(req.params.id, function(err){
 		if(err){
+			console.log(err);
 			res.redirect("/campgrounds");
 		}else{
+			console.log("I an in delted");
+			req.flash("success","Campground deleted");
 			res.redirect("/campgrounds");
 		}
 	});
 });
-
 // middleware
 function isLoggedIn(req, res, next){
 	if(req.isAuthenticated()){
